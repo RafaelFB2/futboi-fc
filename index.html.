@@ -1,106 +1,658 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FUTBOI FC | Site Oficial</title>
-<style>
-:root{--r:#e01820;--r2:#ff3b43;--b:#070707;--c:#111;--c2:#181818;--l:#303030;--t:#f5f5f5;--muted:#aaa}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--b);color:var(--t);font-family:Arial,sans-serif}
-header{position:sticky;top:0;z-index:20;background:#080808ee;border-bottom:1px solid var(--l);backdrop-filter:blur(10px)}
-.nav{max-width:1100px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:1000;font-size:22px;display:flex;align-items:center;gap:9px}.ball{font-size:29px}.navlinks{display:flex;gap:16px;align-items:center}.navlinks a{color:#fff;text-decoration:none;font-size:14px;font-weight:800}.btn,button{border:0;background:var(--r);color:#fff;font-weight:900;padding:12px 17px;border-radius:9px;cursor:pointer;text-decoration:none}.btn.secondary,button.secondary{background:#292929}.btn.small{padding:9px 12px;font-size:12px}
-.hero{min-height:70vh;display:grid;place-items:center;text-align:center;padding:70px 18px;background:radial-gradient(circle at 50% 10%,#5b0b10,#130000 42%,#070707 75%)}.hero .ballbig{font-size:70px}.k{color:#ff4148;font-weight:900;letter-spacing:4px;margin-top:10px}.hero h1{font-size:clamp(48px,10vw,90px);margin:4px 0;letter-spacing:-5px}.hero p{color:#bbb;max-width:650px;margin:0 auto 24px;font-size:17px}
-section{max-width:1100px;margin:auto;padding:58px 18px}h2{font-size:34px;margin:0 0 25px}.red{color:var(--r)}
-.match{background:linear-gradient(145deg,#191919,#0e0e0e);border:1px solid var(--l);border-radius:20px;padding:26px;display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center}.team{text-align:center;font-weight:900;font-size:21px}.teamlogo{width:120px;height:120px;margin:auto;display:grid;place-items:center;background:#090909;border:1px solid #333;border-radius:16px;font-size:48px}.vs{font-size:32px;color:var(--r);font-weight:1000}.meta{text-align:center;color:#bbb;line-height:1.8;margin-top:20px}.pill{display:inline-block;border:1px solid #444;background:#191919;color:#ddd;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800;margin:3px}.status{border-color:#555}.final{border-color:#3f6b45;color:#b8e7be}.cancel{border-color:#71343a;color:#ffb8bc}
-.cards{display:grid;gap:12px}.game{background:#101010;border:1px solid #292929;border-radius:14px;padding:17px;display:flex;justify-content:space-between;align-items:center;gap:15px}.game strong{font-size:17px}.game small{color:#999;line-height:1.7}.empty{color:#888;border:1px dashed #333;padding:22px;border-radius:14px;text-align:center}
-footer{border-top:1px solid var(--l);text-align:center;padding:30px;color:#777}.panel{display:none;background:#0d0d0d;border-top:1px solid #292929}.admin{background:#111;border:1px solid var(--l);border-radius:18px;padding:22px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{font-size:13px;color:#bbb;font-weight:700}input,select,textarea{width:100%;background:#080808;color:#fff;border:1px solid #333;border-radius:8px;padding:11px;margin:5px 0 12px;font:inherit}textarea{min-height:80px;resize:vertical}.hint{font-size:13px;color:#888;line-height:1.5}.adminbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px}.adminlist{margin-top:22px}.preview{background:#151515;border:1px dashed #444;border-radius:12px;padding:15px;margin-top:15px}.modal{display:none;position:fixed;inset:0;background:#000b;z-index:50;place-items:center;padding:18px}.modalbox{width:min(420px,100%);background:#151515;border:1px solid #383838;border-radius:18px;padding:24px;box-shadow:0 20px 80px #000}.modalbox h3{margin-top:0;font-size:24px}.error{color:#ff6970;font-size:13px;display:none;margin:-4px 0 10px}.actions{display:flex;gap:8px;flex-wrap:wrap}.hidden{display:none!important}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="Site oficial do FUTBOI FC. Jogos, resultados e elenco.">
+<title>FUTBOI FC | Oficial</title>
 
-.players{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.player{background:#101010;border:1px solid #292929;border-radius:16px;padding:16px;text-align:center}.playerphoto{width:110px;height:110px;border-radius:50%;object-fit:cover;background:#191919;border:2px solid #333;margin:0 auto 10px;display:grid;place-items:center;font-size:42px}.playernum{font-size:12px;color:#ff4148;font-weight:1000}.player h3{margin:5px 0 2px}.player p{margin:0;color:#999;font-size:13px}.playerActions{margin-top:10px;display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
-@media(max-width:900px){.players{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){.navlinks a:not(.panelBtn){display:none}.match,.formgrid{grid-template-columns:1fr}.vs{text-align:center}.game{align-items:flex-start;flex-direction:column}.hero h1{letter-spacing:-3px}.adminbar{align-items:flex-start;flex-direction:column}}
+<style>
+:root {
+  --red: #e21b2d;
+  --black: #111;
+  --panel: #1b1b1b;
+  --gray: #aaa;
+  --white: #f7f7f7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: Arial, sans-serif;
+}
+header {
+  padding: 25px 16px;
+  text-align: center;
+  background: linear-gradient(135deg,#210408,#111 65%);
+  border-bottom: 3px solid var(--red);
+}
+.crest {
+  width: 86px;
+  height: 86px;
+  margin: auto auto 12px;
+  border: 3px solid var(--red);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 35px;
+  background: #111;
+}
+h1 { margin: 5px 0; letter-spacing: 3px; }
+header p { color: #ccc; margin-bottom: 0; }
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px;
+  background: #181818;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+button, .navlink {
+  background: var(--red);
+  color: white;
+  border: 0;
+  padding: 11px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+button.secondary { background: #383838; }
+button.danger { background: #8d101c; }
+button:hover { filter: brightness(1.12); }
+main { max-width: 1000px; margin: auto; padding: 18px; }
+section { margin: 25px 0 40px; }
+h2 {
+  border-left: 5px solid var(--red);
+  padding-left: 12px;
+}
+.muted { color: var(--gray); }
+.card {
+  background: var(--panel);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 12px 0;
+}
+.match-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag {
+  display: inline-block;
+  background: #401017;
+  color: #ffb7bd;
+  padding: 5px 9px;
+  border-radius: 5px;
+  font-size: 12px;
+  margin: 3px 3px 3px 0;
+}
+.teams {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0;
+}
+.team { font-size: 17px; font-weight: bold; overflow-wrap: anywhere; }
+.score { font-size: 28px; font-weight: bold; }
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(145px,1fr));
+  gap: 12px;
+}
+.player { text-align: center; padding: 15px 8px; }
+.player img {
+  width: 86px; height: 86px;
+  object-fit: cover; border-radius: 50%;
+  border: 2px solid var(--red);
+}
+.number { color: var(--red); font-size: 27px; font-weight: bold; }
+input, select, textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0 14px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #101010;
+  color: white;
+  font: inherit;
+}
+label { font-size: 14px; color: #ddd; }
+form { max-width: 650px; }
+.form-actions, .actions {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.hidden { display: none !important; }
+.empty { text-align: center; padding: 25px; color: #aaa; }
+footer {
+  text-align: center;
+  padding: 25px;
+  border-top: 1px solid #333;
+  color: #888;
+}
+.notice {
+  padding: 12px;
+  border: 1px solid #65424a;
+  border-radius: 7px;
+  color: #ffc5cb;
+  background: #281014;
+  margin: 12px 0;
+}
+@media(max-width:480px) {
+  main { padding: 12px; }
+  .teams { gap: 5px; }
+  .team { font-size: 14px; }
+}
 </style>
 </head>
+
 <body>
-<header><div class="nav"><div class="brand"><span class="ball">⚽</span> FUTBOI FC</div><div class="navlinks"><a href="#jogos">Jogos</a><a href="#sobre">Sobre</a><a class="btn small panelBtn" href="#" onclick="openLogin();return false">🔒 Área da equipe</a></div></div></header>
+<header>
+  <div class="crest">🐂</div>
+  <h1>FUTBOI FC</h1>
+  <p>RAÇA • UNIÃO • FUTEBOL</p>
+  <p class="muted">SITE OFICIAL DO CLUBE</p>
+</header>
 
-<div class="hero"><div><div class="ballbig">⚽</div><div class="k">RAÇA • UNIÃO • FUTEBOL</div><h1>FUTBOI FC</h1><p>Site oficial do time. Confira os próximos jogos, campeonatos, categorias, resultados e informações das partidas.</p><a class="btn" href="#jogos">VER JOGOS</a></div></div>
+<nav>
+  <a class="navlink" href="#jogos">Jogos</a>
+  <a class="navlink" href="#elenco">Elenco</a>
+  <button id="adminButton">Painel administrativo</button>
+</nav>
 
-<section id="jogos"><h2>PRÓXIMO <span class="red">JOGO</span></h2><div id="next"></div><h2 style="margin-top:55px">TODOS OS <span class="red">JOGOS</span></h2><div id="games" class="cards"></div></section>
+<main>
+  <section id="jogos">
+    <h2>⚽ Próximas partidas</h2>
+    <p class="muted">
+      Confira os próximos compromissos do FUTBOI FC.
+    </p>
+    <div id="matches"></div>
+  </section>
 
-<section id="sobre"><h2>SOBRE O <span class="red">FUTBOI FC</span></h2><div class="game"><div><strong>⚽ Futebol, competição e união.</strong><br><small>Este é o espaço público do FUTBOI FC. As informações de partidas são cadastradas pela equipe através da área privada.</small></div></div></section>
+  <section id="elenco">
+    <h2>🐂 Nosso elenco</h2>
+    <p class="muted">Os jogadores que representam o FUTBOI FC.</p>
+    <div id="players" class="player-grid"></div>
+  </section>
 
-<section id="panel" class="panel"><div class="admin"><div class="adminbar"><div><h2 style="margin:0">⚙️ PAINEL DO <span class="red">FUTBOI FC</span></h2><p class="hint">Área da equipe. Cadastre, edite e exclua partidas sem mexer no código.</p></div><button class="secondary" onclick="logout()">Sair</button></div>
-<form id="form"><div class="formgrid">
-<div><label>Adversário</label><input id="opp" required placeholder="Ex.: LSoccer"></div>
-<div><label>Campeonato</label><input id="comp" required placeholder="Ex.: Copa Pequenos Talentos"></div>
-<div><label>Categoria</label><input id="cat" required placeholder="Ex.: Sub-14"></div>
-<div><label>Data</label><input id="date" type="date" required></div>
-<div><label>Horário</label><input id="time" type="time" required></div>
-<div><label>Local</label><input id="place" required placeholder="Ex.: Arena Promofoot"></div>
-<div><label>Campo / quadra</label><input id="field" placeholder="Ex.: Campo 1"></div>
-<div><label>Rodada / fase</label><input id="round" placeholder="Ex.: Fase de grupos"></div>
-<div><label>Situação</label><select id="status"><option value="Agendada">Agendada</option><option value="Finalizada">Finalizada</option><option value="Cancelada">Cancelada</option></select></div>
-<div id="scoreWrap"><label>Placar final <span class="hint">(só depois do jogo)</span></label><input id="score" placeholder="Ex.: 3 x 1"></div>
-<div style="grid-column:1/-1"><label>Observações</label><textarea id="notes" placeholder="Ex.: Chegar 30 min antes."></textarea></div>
-<div style="grid-column:1/-1"><label>Imagem do anúncio</label><input id="image" type="file" accept="image/*"><div id="imagePreview" class="preview hidden"></div></div>
-<hr style="border:0;border-top:1px solid #292929;margin:24px 0"><h3 style="grid-column:1/-1;margin:0">👥 Jogadores</h3>
-<div><label>Nome do jogador</label><input id="playerName" placeholder="Ex.: João"></div>
-<div><label>Número</label><input id="playerNumber" type="number" min="0" max="99" placeholder="Ex.: 10"></div>
-<div><label>Posição</label><input id="playerPosition" placeholder="Ex.: Atacante"></div>
-<div><label>Foto do jogador</label><input id="playerImage" type="file" accept="image/*"></div>
-<div style="grid-column:1/-1"><div id="playerImagePreview" class="preview hidden"></div></div>
-<div style="grid-column:1/-1"><button type="button" onclick="savePlayer()">👤 ADICIONAR JOGADOR</button></div>
-</div><div class="actions"><button type="submit">➕ PUBLICAR JOGO</button><button type="button" class="secondary hidden" id="cancelEdit" onclick="cancelEdit()">Cancelar edição</button></div></form>
-<div id="adminGames" class="adminlist"></div></div></section>
+  <section id="admin" class="hidden">
+    <h2>🔒 Painel administrativo</h2>
 
-<section id="jogadores"><h2>ELENCO <span class="red">FUTBOI FC</span></h2><p class="hint">Conheça os jogadores do time.</p><div id="players" class="players"></div></section>
-<footer>© 2026 FUTBOI FC • Site oficial</footer>
+    <div id="login">
+      <p class="muted">
+        Entre para gerenciar partidas e jogadores neste navegador.
+      </p>
+      <div class="notice">
+        Atenção: a senha desta versão é apenas uma barreira visual.
+        Ela não protege o site contra acesso técnico ao código.
+      </div>
+      <form id="loginForm">
+        <label for="password">Senha do painel</label>
+        <input id="password" type="password" required
+               autocomplete="current-password">
+        <button type="submit">Entrar</button>
+      </form>
+      <p id="loginMessage" class="muted"></p>
+    </div>
 
-<div id="loginModal" class="modal"><div class="modalbox"><h3>🔒 Área da equipe</h3><p class="hint">Digite a senha para abrir o painel.</p><input id="password" type="password" placeholder="Senha"><div id="loginError" class="error">Senha incorreta.</div><div class="actions"><button onclick="login()">Entrar</button><button class="secondary" onclick="closeLogin()">Cancelar</button></div></div></div>
+    <div id="dashboard" class="hidden">
+      <div class="notice">
+        As alterações são salvas neste navegador. Para atualizar os dados
+        que todos os visitantes veem, será necessário conectar um banco
+        de dados online.
+      </div>
+
+      <button id="logout" class="secondary">Sair do painel</button>
+
+      <h3>Gerenciar partidas</h3>
+      <form id="matchForm">
+        <input type="hidden" id="matchId">
+
+        <label for="championship">Campeonato</label>
+        <input id="championship" required placeholder="Ex.: Campeonato Municipal">
+
+        <label for="category">Categoria</label>
+        <input id="category" required placeholder="Ex.: Sub-14">
+
+        <label for="opponent">Adversário</label>
+        <input id="opponent" required placeholder="Nome do adversário">
+
+        <label for="matchDate">Data da partida</label>
+        <input id="matchDate" type="date" required>
+
+        <label for="matchTime">Horário de início</label>
+        <input id="matchTime" type="time" required>
+
+        <label for="venue">Local</label>
+        <input id="venue" placeholder="Campo ou estádio">
+
+        <label for="matchStatus">Situação</label>
+        <select id="matchStatus">
+          <option value="scheduled">Agendada</option>
+          <option value="finished">Finalizada</option>
+        </select>
+
+        <label for="ourScore">Gols do FUTBOI FC (opcional)</label>
+        <input id="ourScore" type="number" min="0" placeholder="Placar">
+
+        <label for="theirScore">Gols do adversário (opcional)</label>
+        <input id="theirScore" type="number" min="0" placeholder="Placar">
+
+        <div class="form-actions">
+          <button type="submit">Salvar partida</button>
+          <button type="button" class="secondary"
+                  id="cancelMatch">Limpar formulário</button>
+        </div>
+      </form>
+
+      <div id="adminMatches"></div>
+
+      <h3>Gerenciar jogadores</h3>
+      <form id="playerForm">
+        <input type="hidden" id="playerId">
+
+        <label for="playerName">Nome do jogador</label>
+        <input id="playerName" required placeholder="Nome">
+
+        <label for="playerNumber">Número da camisa</label>
+        <input id="playerNumber" type="number" min="0" max="99"
+               required placeholder="Ex.: 10">
+
+        <label for="playerPosition">Posição</label>
+        <input id="playerPosition" required
+               placeholder="Ex.: Goleiro, zagueiro, atacante">
+
+        <label for="playerPhoto">Link da foto (opcional)</label>
+        <input id="playerPhoto" type="url" placeholder="https://...">
+
+        <div class="form-actions">
+          <button type="submit">Salvar jogador</button>
+          <button type="button" class="secondary"
+                  id="cancelPlayer">Limpar formulário</button>
+        </div>
+      </form>
+
+      <div id="adminPlayers"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>FUTBOI FC</strong>
+  <p>Site oficial • Paixão pelo futebol</p>
+</footer>
 
 <script>
-const KEY='futboi_fc_games_v4_1';
-const PASSWORD='FUTBOI2026';
-let games=JSON.parse(localStorage.getItem(KEY)||'[]');
-let editingIndex=null;
-const PLAYER_KEY='futboi_fc_players_v5';
-let players=JSON.parse(localStorage.getItem(PLAYER_KEY)||'[]');
-let editingPlayerIndex=null;
-if(!games.length){games=[{opp:'LSoccer',comp:'Copa Pequenos Talentos de Futebol Society 2026',cat:'Sub-14',date:'2026-10-07',time:'19:00',place:'Arena Promofoot',field:'Campo 1',round:'',status:'Agendada',score:'',notes:'',image:''}];save()}
-const $=id=>document.getElementById(id);
-function save(){localStorage.setItem(KEY,JSON.stringify(games));render();renderAdmin();renderPlayers()}
-function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-function fmtDate(d){if(!d)return '';const [y,m,day]=d.split('-');return `${day}/${m}/${y}`}
-function expiresAt(g){return new Date(g.date+'T'+g.time).getTime()+60*60*1000}
-function isExpired(g){return !g.date||!g.time ? false : Date.now()>expiresAt(g)}
-function publicGames(){return games.filter(g=>!isExpired(g))}
-function sorted(){return [...games].sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))}
-function statusPill(g){let cls=g.status==='Finalizada'?'final':g.status==='Cancelada'?'cancel':'';return `<span class="pill status ${cls}">${esc(g.status||'Agendada')}</span>`}
-function details(g){let bits=[g.comp,g.cat,g.date&&fmtDate(g.date),g.time,g.place,g.field,g.round].filter(Boolean);return bits.map((x,i)=>i<2?`<span class="pill">${esc(x)}</span>`:esc(x)).join(' • ')}
-function render(){const s=publicGames().sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));const upcoming=s.find(g=>g.status!=='Finalizada'&&g.status!=='Cancelada')||s[0];
-if(!upcoming){$('next').innerHTML='<div class="empty">Nenhum jogo cadastrado.</div>'}else{$('next').innerHTML=`<div class="match"><div class="team"><div class="teamlogo">⚽</div><div>FUTBOI FC</div></div><div class="vs">X</div><div class="team"><div class="teamlogo">🏆</div><div>${esc(upcoming.opp)}</div></div></div><div class="meta">${statusPill(upcoming)}<br><strong>${esc(upcoming.date?fmtDate(upcoming.date):'')} • ${esc(upcoming.time)}</strong><br>${esc(upcoming.place)}${upcoming.field?' • '+esc(upcoming.field):''}<br>${details(upcoming)}${upcoming.score&&upcoming.status==='Finalizada'?'<br><strong>Placar: '+esc(upcoming.score)+'</strong>':''}${upcoming.notes?'<br>📝 '+esc(upcoming.notes):''}</div>`}
-$('games').innerHTML=s.map((g,i)=>`<div class="game"><div><strong>FUTBOI FC x ${esc(g.opp)}</strong> ${statusPill(g)}<br><small>${details(g)}</small>${g.score&&g.status==='Finalizada'?'<br><small><strong>Placar: '+esc(g.score)+'</strong></small>':''}</div></div>`).join('')||'<div class="empty">Nenhum jogo cadastrado.</div>'}
-function renderAdmin(){if(!$('adminGames'))return;const s=games.map((g,i)=>({g,i})).sort((a,b)=>(a.g.date+a.g.time).localeCompare(b.g.date+b.g.time));$('adminGames').innerHTML=s.map(({g,i})=>`<div class="game"><div><strong>FUTBOI FC x ${esc(g.opp)}</strong> ${statusPill(g)}<br><small>${details(g)}</small>${g.score&&g.status==='Finalizada'?'<br><small>Placar: '+esc(g.score)+'</small>':''}</div><div class="actions"><button class="secondary" onclick="editGame(${i})">✏️ Editar</button><button class="secondary" onclick="removeGame(${i})">🗑️ Excluir</button></div></div>`).join('')||'<div class="empty">Nenhum jogo cadastrado.</div>'}; $('adminGames').innerHTML += `<div style="margin-top:30px"><h3>👥 Jogadores cadastrados</h3>${players.map((p,i)=>`<div class="game"><div><strong>${esc(p.name)}</strong><br><small>${p.number!==''?'#'+esc(p.number)+' • ':''}${esc(p.position)}</small></div><button class="secondary" onclick="removePlayer(${i})">🗑️ Excluir</button></div>`).join('')||'<div class="empty">Nenhum jogador cadastrado.</div>'}</div>`
-function renderPlayers(){const el=$('players');if(!el)return;if(!players.length){el.innerHTML='<div class="empty" style="grid-column:1/-1">Nenhum jogador cadastrado ainda.</div>';return}el.innerHTML=players.map(p=>`<div class="player">${p.image?`<img class="playerphoto" src="${p.image}" alt="">`:`<div class="playerphoto">⚽</div>`}<div class="playernum">${p.number!==''?'#'+esc(p.number):''}</div><h3>${esc(p.name)}</h3><p>${esc(p.position)}</p></div>`).join('')}
-function renderAdminPlayers(){const el=$('adminGames');if(!el)return;let existing=el.innerHTML;const block=`<div style="margin-top:30px"><h3>👥 Jogadores cadastrados</h3>${players.map((p,i)=>`<div class="game"><div><strong>${esc(p.name)}</strong><br><small>${p.number!==''?'#'+esc(p.number)+' • ':''}${esc(p.position)}</small></div><button class="secondary" onclick="removePlayer(${i})">🗑️ Excluir</button></div>`).join('')||'<div class="empty">Nenhum jogador cadastrado.</div>'}</div>`;el.innerHTML=existing+block}
-function savePlayer(){const name=$('playerName').value.trim();if(!name){alert('Digite o nome do jogador.');return}const data={name,number:$('playerNumber').value,position:$('playerPosition').value.trim(),image:''};const f=$('playerImage').files[0];if(f){const r=new FileReader();r.onload=()=>{data.image=r.result;commitPlayer(data)};r.readAsDataURL(f)}else commitPlayer(data)}
-function commitPlayer(data){if(editingPlayerIndex!==null){players[editingPlayerIndex]=data;editingPlayerIndex=null}else players.push(data);localStorage.setItem(PLAYER_KEY,JSON.stringify(players));$('playerName').value='';$('playerNumber').value='';$('playerPosition').value='';$('playerImage').value='';renderPlayers();renderAdmin();alert('Jogador salvo! ⚽')}
-function removePlayer(i){if(confirm('Excluir este jogador?')){players.splice(i,1);localStorage.setItem(PLAYER_KEY,JSON.stringify(players));renderPlayers();renderAdmin();}}
+"use strict";
 
-function openLogin(){ $('loginModal').style.display='grid';$('password').focus() }
-function closeLogin(){ $('loginModal').style.display='none';$('loginError').style.display='none';$('password').value='' }
-function login(){if($('password').value===PASSWORD){sessionStorage.setItem('futboi_panel_auth','1');closeLogin();$('panel').style.display='block';location.hash='panel';window.scrollTo({top:$('panel').offsetTop-60,behavior:'smooth'})}else{$('loginError').style.display='block'}}
-function logout(){sessionStorage.removeItem('futboi_panel_auth');$('panel').style.display='none';location.hash='jogos';window.scrollTo({top:$('jogos').offsetTop-60,behavior:'smooth'})}
-function editGame(i){const g=games[i];editingIndex=i;['opp','comp','cat','date','time','place','field','round','status','score','notes'].forEach(k=>$(k).value=g[k]||'');$('cancelEdit').classList.remove('hidden');$('form').querySelector('button[type=submit]').textContent='💾 SALVAR ALTERAÇÕES';toggleScore();window.scrollTo({top:$('panel').offsetTop-60,behavior:'smooth'})}
-function cancelEdit(){editingIndex=null;$('form').reset();$('cancelEdit').classList.add('hidden');$('form').querySelector('button[type=submit]').textContent='➕ PUBLICAR JOGO';toggleScore();$('imagePreview').classList.add('hidden');$('imagePreview').innerHTML=''}
-function removeGame(i){if(confirm('Excluir este jogo?')){games.splice(i,1);save()}}
-function toggleScore(){$('scoreWrap').classList.toggle('hidden',$('status').value!=='Finalizada');if($('status').value!=='Finalizada')$('score').value=''}
-$('status').addEventListener('change',toggleScore);
-$('image').addEventListener('change',()=>{const f=$('image').files[0];if(!f){$('imagePreview').classList.add('hidden');return}const r=new FileReader();r.onload=()=>{$('imagePreview').classList.remove('hidden');$('imagePreview').innerHTML=`<strong>Prévia do anúncio</strong><br><img src="${r.result}" style="max-width:100%;max-height:260px;border-radius:10px;margin-top:8px">`};r.readAsDataURL(f)});
-$('form').addEventListener('submit',e=>{e.preventDefault();const old=editingIndex!==null?games[editingIndex]:null;const finish=$('status').value==='Finalizada';const imageFile=$('image').files[0];const data={opp:$('opp').value.trim(),comp:$('comp').value.trim(),cat:$('cat').value.trim(),date:$('date').value,time:$('time').value,place:$('place').value.trim(),field:$('field').value.trim(),round:$('round').value.trim(),status:$('status').value,score:finish?$('score').value.trim():'',notes:$('notes').value.trim(),image:old?.image||''};
-if(imageFile){const r=new FileReader();r.onload=()=>{data.image=r.result;commit(data)};r.readAsDataURL(imageFile)}else commit(data);});
-function commit(data){if(editingIndex!==null){games[editingIndex]=data}else games.push(data);editingIndex=null;save();$('form').reset();$('cancelEdit').classList.add('hidden');$('form').querySelector('button[type=submit]').textContent='➕ PUBLICAR JOGO';toggleScore();$('imagePreview').classList.add('hidden');alert('Jogo salvo no painel! ⚽')}
-if(sessionStorage.getItem('futboi_panel_auth')==='1'){$('panel').style.display='block'}
-$('password').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
-toggleScore();render();renderAdmin();renderPlayers();
+// DEMONSTRAÇÃO LOCAL:
+// Troque esta senha somente para testar.
+// Uma senha escrita no JavaScript não é segura para produção.
+const DEMO_PASSWORD = "FutboiV5!";
+
+const MATCH_KEY = "futboi_v5_matches";
+const PLAYER_KEY = "futboi_v5_players";
+
+const $ = id => document.getElementById(id);
+
+function readData(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+let matches = readData(MATCH_KEY, []);
+let players = readData(PLAYER_KEY, []);
+let loggedIn = false;
+
+function saveData() {
+  try {
+    localStorage.setItem(MATCH_KEY, JSON.stringify(matches));
+    localStorage.setItem(PLAYER_KEY, JSON.stringify(players));
+    return true;
+  } catch (error) {
+    alert("Não foi possível salvar os dados neste navegador.");
+    return false;
+  }
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function validPhoto(url) {
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === "https:" || parsed.protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
+// Usa data e horário locais do navegador.
+// A partida some da agenda 60 minutos após o início.
+// A remoção é apenas da agenda pública; o cadastro é mantido.
+function getMatchStart(match) {
+  const dateTime = new Date(
+    `${match.date}T${match.time}:00`
+  );
+  return dateTime.getTime();
+}
+
+function isHiddenFromSchedule(match) {
+  if (match.status === "finished") return true;
+
+  const start = getMatchStart(match);
+  if (!Number.isFinite(start)) return false;
+
+  return Date.now() >= start + 60 * 60 * 1000;
+}
+
+function formatDate(date) {
+  if (!date) return "Data não informada";
+  const parts = date.split("-");
+  if (parts.length !== 3) return date;
+  return `${parts[2]}/${parts[1]}/${parts[0]}`;
+}
+
+function publicMatches() {
+  return matches.filter(match => !isHiddenFromSchedule(match))
+    .sort((a, b) =>
+      getMatchStart(a) - getMatchStart(b)
+    );
+}
+
+function renderMatches() {
+  const list = publicMatches();
+
+  if (!list.length) {
+    $("matches").innerHTML =
+      '<div class="card empty">Nenhuma partida agendada no momento.</div>';
+    return;
+  }
+
+  $("matches").innerHTML = list.map(match => {
+    const hasScore = match.ourScore !== "" &&
+      match.theirScore !== "" &&
+      match.ourScore != null &&
+      match.theirScore != null;
+
+    const score = hasScore
+      ? `<div class="score">${escapeHTML(match.ourScore)} – ${escapeHTML(match.theirScore)}</div>`
+      : '<div class="score">VS</div>';
+
+    return `
+      <article class="card">
+        <div class="match-top">
+          <span class="tag">${escapeHTML(match.championship)}</span>
+          <span class="tag">${escapeHTML(match.category)}</span>
+        </div>
+        <div class="teams">
+          <div class="team">🐂 FUTBOI FC</div>
+          ${score}
+          <div class="team">${escapeHTML(match.opponent)}</div>
+        </div>
+        <p>📅 ${escapeHTML(formatDate(match.date))}</p>
+        <p>🕒 ${escapeHTML(match.time)}</p>
+        <p>📍 ${escapeHTML(match.venue || "Local a confirmar")}</p>
+        <p class="muted">${match.status === "finished" ? "Finalizada" : "Agendada"}</p>
+      </article>`;
+  }).join("");
+}
+
+function renderPlayers() {
+  if (!players.length) {
+    $("players").innerHTML =
+      '<div class="card empty">O elenco será divulgado em breve.</div>';
+    return;
+  }
+
+  $("players").innerHTML = players.map(player => {
+    const photo = validPhoto(player.photo || "");
+    return `
+      <article class="card player">
+        ${photo
+          ? `<img src="${escapeHTML(player.photo)}" alt="Foto de ${escapeHTML(player.name)}" loading="lazy" onerror="this.style.display='none'">`
+          : '<div class="crest">🐂</div>'}
+        <div class="number">#${escapeHTML(player.number)}</div>
+        <h3>${escapeHTML(player.name)}</h3>
+        <p class="muted">${escapeHTML(player.position)}</p>
+      </article>`;
+  }).join("");
+}
+
+function renderAdmin() {
+  if (!loggedIn) return;
+
+  $("adminMatches").innerHTML =
+    "<h4>Partidas cadastradas</h4>" +
+    (matches.length ? matches.map(match => `
+      <div class="card">
+        <strong>${escapeHTML(match.opponent)}</strong>
+        <p>${escapeHTML(match.championship)} · ${escapeHTML(match.category)}</p>
+        <p>${escapeHTML(formatDate(match.date))} às ${escapeHTML(match.time)}</p>
+        <p>${isHiddenFromSchedule(match)
+          ? "Fora da agenda pública"
+          : "Visível na agenda pública"}</p>
+        <div class="actions">
+          <button class="secondary" data-edit-match="${escapeHTML(match.id)}">Editar</button>
+          <button class="danger" data-delete-match="${escapeHTML(match.id)}">Excluir</button>
+        </div>
+      </div>`).join("")
+      : '<p class="muted">Nenhuma partida cadastrada.</p>');
+
+  $("adminPlayers").innerHTML =
+    "<h4>Jogadores cadastrados</h4>" +
+    (players.length ? players.map(player => `
+      <div class="card">
+        <strong>#${escapeHTML(player.number)} ${escapeHTML(player.name)}</strong>
+        <p>${escapeHTML(player.position)}</p>
+        <div class="actions">
+          <button class="secondary" data-edit-player="${escapeHTML(player.id)}">Editar</button>
+          <button class="danger" data-delete-player="${escapeHTML(player.id)}">Excluir</button>
+        </div>
+      </div>`).join("")
+      : '<p class="muted">Nenhum jogador cadastrado.</p>');
+}
+
+function renderAll() {
+  renderMatches();
+  renderPlayers();
+  renderAdmin();
+}
+
+function resetMatchForm() {
+  $("matchForm").reset();
+  $("matchId").value = "";
+  $("matchStatus").value = "scheduled";
+}
+
+function resetPlayerForm() {
+  $("playerForm").reset();
+  $("playerId").value = "";
+}
+
+$("adminButton").addEventListener("click", () => {
+  $("admin").classList.toggle("hidden");
+  $("admin").scrollIntoView({ behavior: "smooth" });
+});
+
+$("loginForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  if ($("password").value !== DEMO_PASSWORD) {
+    $("loginMessage").textContent = "Senha incorreta.";
+    return;
+  }
+
+  loggedIn = true;
+  $("login").classList.add("hidden");
+  $("dashboard").classList.remove("hidden");
+  $("loginMessage").textContent = "";
+  $("password").value = "";
+  renderAdmin();
+});
+
+$("logout").addEventListener("click", () => {
+  loggedIn = false;
+  $("dashboard").classList.add("hidden");
+  $("login").classList.remove("hidden");
+});
+
+$("matchForm").addEventListener("submit", event => {
+  event.preventDefault();
+  if (!loggedIn) return;
+
+  const id = $("matchId").value || crypto.randomUUID();
+
+  const match = {
+    id,
+    championship: $("championship").value.trim(),
+    category: $("category").value.trim(),
+    opponent: $("opponent").value.trim(),
+    date: $("matchDate").value,
+    time: $("matchTime").value,
+    venue: $("venue").value.trim(),
+    status: $("matchStatus").value,
+    ourScore: $("ourScore").value,
+    theirScore: $("theirScore").value
+  };
+
+  if (!match.date || !match.time) {
+    alert("Informe a data e o horário da partida.");
+    return;
+  }
+
+  const index = matches.findIndex(item => item.id === id);
+  if (index >= 0) matches[index] = match;
+  else matches.push(match);
+
+  if (saveData()) {
+    resetMatchForm();
+    renderAll();
+    alert("Partida salva neste navegador!");
+  }
+});
+
+$("playerForm").addEventListener("submit", event => {
+  event.preventDefault();
+  if (!loggedIn) return;
+
+  const id = $("playerId").value || crypto.randomUUID();
+  const photo = $("playerPhoto").value.trim();
+
+  if (photo && !validPhoto(photo)) {
+    alert("Informe um link de foto válido começando com http:// ou https://.");
+    return;
+  }
+
+  const player = {
+    id,
+    name: $("playerName").value.trim(),
+    number: $("playerNumber").value,
+    position: $("playerPosition").value.trim(),
+    photo
+  };
+
+  const index = players.findIndex(item => item.id === id);
+  if (index >= 0) players[index] = player;
+  else players.push(player);
+
+  if (saveData()) {
+    resetPlayerForm();
+    renderAll();
+    alert("Jogador salvo neste navegador!");
+  }
+});
+
+$("cancelMatch").addEventListener("click", resetMatchForm);
+$("cancelPlayer").addEventListener("click", resetPlayerForm);
+
+$("adminMatches").addEventListener("click", event => {
+  if (!loggedIn) return;
+
+  const edit = event.target.closest("[data-edit-match]");
+  const del = event.target.closest("[data-delete-match]");
+
+  if (edit) {
+    const match = matches.find(item =>
+      item.id === edit.dataset.editMatch
+    );
+    if (!match) return;
+
+    $("matchId").value = match.id;
+    $("championship").value = match.championship;
+    $("category").value = match.category;
+    $("opponent").value = match.opponent;
+    $("matchDate").value = match.date;
+    $("matchTime").value = match.time;
+    $("venue").value = match.venue || "";
+    $("matchStatus").value = match.status;
+    $("ourScore").value = match.ourScore ?? "";
+    $("theirScore").value = match.theirScore ?? "";
+    $("matchForm").scrollIntoView({ behavior: "smooth" });
+  }
+
+  if (del && confirm("Excluir esta partida permanentemente deste navegador?")) {
+    matches = matches.filter(item =>
+      item.id !== del.dataset.deleteMatch
+    );
+    if (saveData()) renderAll();
+  }
+});
+
+$("adminPlayers").addEventListener("click", event => {
+  if (!loggedIn) return;
+
+  const edit = event.target.closest("[data-edit-player]");
+  const del = event.target.closest("[data-delete-player]");
+
+  if (edit) {
+    const player = players.find(item =>
+      item.id === edit.dataset.editPlayer
+    );
+    if (!player) return;
+
+    $("playerId").value = player.id;
+    $("playerName").value = player.name;
+    $("playerNumber").value = player.number;
+    $("playerPosition").value = player.position;
+    $("playerPhoto").value = player.photo || "";
+    $("playerForm").scrollIntoView({ behavior: "smooth" });
+  }
+
+  if (del && confirm("Excluir este jogador deste navegador?")) {
+    players = players.filter(item =>
+      item.id !== del.dataset.deletePlayer
+    );
+    if (saveData()) renderAll();
+  }
+});
+
+// Atualiza a agenda mesmo quando a página fica aberta.
+// A data/hora é verificada também ao carregar o site.
+renderAll();
+setInterval(renderAll, 30 * 1000);
 </script>
-</body></html>
+</body>
+</html>
